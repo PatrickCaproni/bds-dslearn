@@ -1,11 +1,14 @@
 package com.devsuperior.dslearnbds.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,17 +21,20 @@ public class Course implements Serializable {
 	private Long id;
 	private String name;
 	private String imgUri;
-	private String imgGreyUri;
-
+	private String imgGrayUri;
+	
+	@OneToMany(mappedBy = "course")
+	private List<Offer> offers = new ArrayList<>();
+	
 	public Course() {
 	}
 
-	public Course(Long id, String name, String imgUri, String imgGreyUri) {
+	public Course(Long id, String name, String imgUri, String imgGrayUri) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.imgUri = imgUri;
-		this.imgGreyUri = imgGreyUri;
+		this.imgGrayUri = imgGrayUri;
 	}
 
 	public Long getId() {
@@ -55,12 +61,16 @@ public class Course implements Serializable {
 		this.imgUri = imgUri;
 	}
 
-	public String getImgGreyUri() {
-		return imgGreyUri;
+	public String getImgGrayUri() {
+		return imgGrayUri;
 	}
 
-	public void setImgGreyUri(String imgGreyUri) {
-		this.imgGreyUri = imgGreyUri;
+	public void setImgGrayUri(String imgGrayUri) {
+		this.imgGrayUri = imgGrayUri;
+	}
+
+	public List<Offer> getOffers() {
+		return offers;
 	}
 
 	@Override
@@ -87,5 +97,4 @@ public class Course implements Serializable {
 			return false;
 		return true;
 	}
-
 }
