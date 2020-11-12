@@ -95,6 +95,10 @@ public class User implements UserDetails, Serializable{
 	public Set<Role> getRoles() {
 		return roles;
 	}
+	
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
 
 	@Override
 	public int hashCode() {
